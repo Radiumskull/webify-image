@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Layout, Nav } from './components/styled/layout';
+import { Link, Switch, Route, Redirect} from 'react-router-dom'
+import Home from './containers/Home';
+import Amrutam from './containers/Amrutam';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Nav>
+        <h1>Webify Image</h1>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/amrutam">Amrutam</Link></li>
+          <li><Link to="/about">About</Link></li>
+        </ul>
+      </Nav> 
+      <main>
+        <Switch>
+          <Route path="/amrutam" exact component={Amrutam}/>
+          <Route path="/" exact component={Home}/>
+          <Route render={() => <Redirect to="/"/>}/>
+        </Switch>
+      </main>
+      <footer>Pawnation</footer>
+    </Layout>
   );
 }
 
