@@ -32,7 +32,7 @@ const CropComponent = ({ aspect, image, addFinalImageHandler } : CropComponentPr
       
       const onSubmitHandler = async () => {
             console.log(croppedAreaPixels)
-            const croppedImg = getCroppedImg(image, croppedAreaPixels)
+            const croppedImg =await getCroppedImg(image, croppedAreaPixels)
             addFinalImageHandler(croppedImg)
       }
 

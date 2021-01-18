@@ -23,7 +23,7 @@ const GalleryImage = styled.div`
             position: relative;
             display: flex;
             > img {
-                  object-fit: cover;
+                  object-fit: contain;
                   max-width:400px;
                   max-height:400px;
                   width: auto;
@@ -63,7 +63,7 @@ const FileInput = styled.input.attrs(props => ({type: 'file'}))`
 const Image = ({ image,  index, removeImage }: any) => {
       return(
             <GalleryImage>
-                        <img  src={URL.createObjectURL(image)} alt={"gallery_image_" + index}/>
+                        <img  src={image.image ? URL.createObjectURL(image.image) : URL.createObjectURL(image)} alt={"gallery_image_" + index}/>
                         { removeImage && (<button onClick={() => removeImage(index)}>Remove Image</button>)}
             </GalleryImage>
       )

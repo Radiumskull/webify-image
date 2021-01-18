@@ -1,10 +1,6 @@
 import React from 'react'
-import { Area } from 'react-easy-crop/types'
-import getCroppedImg from '../common/getCroppedImage'
 import CropComponent from '../CropComponent'
 import ImageTypeDialog from './ImageTypeDialog'
-
-const newOutputImage = (croppedImage: any, imageType: any) => { return {image: croppedImage as any, imageType: imageType as any}}
 
 const CropperSection = ({ images, setFinalImages, setScreen } : any) => {
       const [ index, setIndex ] = React.useState<number>(0)
@@ -12,16 +8,16 @@ const CropperSection = ({ images, setFinalImages, setScreen } : any) => {
       const [ imageType, setImageType ] = React.useState<string | null>(null)
 
       const addFinalImageHandler = (croppedImage: any) => {
-            console.log(croppedImage)
-            // const temp: any = outputImages.push(newOutputImage(croppedImage, imageType))
-            // setOutputImages(temp)
+
+            const temp: any = [...outputImages, {image: croppedImage as any, imageType: imageType as any}]
+            setOutputImages(temp)
+            console.log(outputImages)
             if(index < images.length - 1){
                   setIndex(index + 1)
                   setImageType(null)
             } else {
-                  console.log(outputImages)
-                  // setFinalImages(outputImages)
-                  // setScreen('download')
+                  setFinalImages(temp)
+                  setScreen('download')
             }
       }      
 
